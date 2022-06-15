@@ -1,0 +1,46 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Sortie{% endblock %}
+{% block h1 %}<h1 class="h3 mb-0 text-gray-800">Sortie</h1>{% endblock %}
+{% block body %}
+<div class="row">
+     <div class="container col-md-6">
+      <div class="card">
+         <div class="card-header">Liste des sorties</div>
+        <div class="card-body">
+       <table class="table table-striped table-bordered">
+          <tr>
+            <th>Id</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Date</th>
+          </tr>
+         {% for s in sorties %}
+             <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.produit }}</td>
+                <td>{{ s.qte }}</td>
+                <td>{{ s.prix }}</td>
+                <td>{{ s.date|date("d/m/Y") }}</td>
+             </tr>
+          {% endfor %} 
+       </table>
+      </div>
+   </div>   
+     </div>
+     <div class="container col-md-6">
+      <div class="card">
+         <div class="card-header">Formulaire de gestion des sorties</div>
+        <div class="card-body">
+        {% for message in app.flashes('fail') %}
+          <div class="card-header alert alert-danger">
+           {{ message }}
+             </div>
+           {% endfor %}
+       {{ form(form)}}
+      </div>
+   </div>  
+   </div> 
+   </div>
+{% endblock %}
